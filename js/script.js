@@ -1,16 +1,18 @@
-let calc = document.querySelector('#calculator');
-let fieldValue = calc.querySelector('#fieldValue');
+let calc = document.getElementById('calculator');
+console.log(calc);
+let fieldValue = document.getElementById('fieldValue');
 let res = 0;
-// 
+//
 
 calc.onclick = (event) => {
   let target = event.target;
-  if (target.getAttribute('type') !== 'button') return;
-  let val = target.getAttribute('value');
+  if (target.tagName != 'BUTTON') return;
+  let val = target.getAttribute('data-value');
+
   res += val;
   fieldValue.setAttribute('value', res.slice(1));
 
-  if(target.getAttribute('value') == 'C') clear();
+  if(target.getAttribute('data-value') == 'C') clear();
 }
 
 let clear = () => {
