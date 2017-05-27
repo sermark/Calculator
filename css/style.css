@@ -8,6 +8,10 @@ h1 {
   color: rgb(107, 48, 231);
 }
 
+.calculator{
+  max-width: 320px;
+}
+
 .row div {
   padding: 0;
   width: 81px;
@@ -19,6 +23,7 @@ h1 {
 
 .row  .calc-disp:focus {
   box-shadow: none;
+  outer: 0;
 }
 
 .row .calc-disp[type = "text"] {
@@ -42,4 +47,6 @@ h1 {
 
 .row .button:focus{
   background-color: #337ab7;
+  outline: none;
+
 }
