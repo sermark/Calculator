@@ -14,47 +14,49 @@ calc.onclick = (event) => {
   		res += val;
   		display.value = res;
   	}
-  	else updateDisplay();
-  if(target.dataset.value == 'C') clear();
+  	else calc.updateDisplay();
+  if(target.dataset.value == 'C') calc.clear();
 }
 
-let clear = () => {
+calc.clear = () => {
   display.value = '';
   res = '';
 }
 
-let updateDisplay = () => {
+calc.updateDisplay = () => {
 	res = display.value.split(op)
-	if (op == '+') {
-    display.value = sum(res);
+  switch (op){
+	case ('+'):
+    display.value = calc.sum(res);
     res = display.value;
-  }
-	else if (op == '-') {
-    display.value = diff(res);
+    break;
+	case ('-'):
+    display.value = calc.diff(res);
     res = display.value;
-  }
-	else if (op == '*') {
-    display.value = mul(res);
+    break;
+	case ('*'):
+    display.value = calc.mul(res);
     res = display.value;
-  }
-	else {
-    display.value = div(res);
+    break;
+	case ('/'):
+    display.value = calc.div(res);
     res = display.value;
+    break;
   }
 }
 
-let sum = (arr) => arr.reduce(function (prev, next){
+calc.sum = (arr) => arr.reduce(function (prev, next){
 	return +prev + +next;
 });
 
-let diff = (arr) => arr.reduce(function (prev, next){
+calc.diff = (arr) => arr.reduce(function (prev, next){
 	return +prev - +next;
 });
 
-let mul = (arr) => arr.reduce(function (prev, next){
+calc.mul = (arr) => arr.reduce(function (prev, next){
 	return +prev * +next;
 });
 
-let div = (arr) => arr.reduce(function (prev, next){
+calc.div = (arr) => arr.reduce(function (prev, next){
 	return +prev / +next;
 });
