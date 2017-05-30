@@ -1,35 +1,46 @@
 let calc = document.getElementById('calculator');
 let display = document.getElementById('display');
-let res = 0;
+let res = '';
 let op;
 
 calc.onclick = (event) => {
   let target = event.target;
   if (target.tagName != 'BUTTON') return;
-  	if(target.innerHTML !== '=' && target.innerHTML !== 'C') {
-  		if (target.innerHTML == '+' || target.innerHTML == '-' || target.innerHTML == '*' || target.innerHTML == '/'){
-  			op = target.innerHTML;
+  	if(target.dataset.value !== '=' && target.dataset.value !== 'C') {
+  		if (target.dataset.value == '+' || target.dataset.value == '-' || target.dataset.value == '*' || target.dataset.value == '/'){
+  			op = target.dataset.value;
   		}
-  		let val = target.innerHTML;
+  		let val = target.dataset.value;
   		res += val;
-  		display.value = res.substring(1);
+  		display.value = res;
   	}
   	else updateDisplay();
-
-  if(target.innerHTML == 'C') clear();
+  if(target.dataset.value == 'C') clear();
 }
 
 let clear = () => {
-  display.value = 0;
-  res = 0;
+  display.value = '';
+  res = '';
 }
 
 let updateDisplay = () => {
 	res = display.value.split(op)
-	if (op == '+') display.value = sum(res);
-	else if (op == '-') display.value = diff(res);
-	else if (op == '*') display.value = mul(res);
-	else display.value = div(res);
+	if (op == '+') {
+    display.value = sum(res);
+    res = display.value;
+  }
+	else if (op == '-') {
+    display.value = diff(res);
+    res = display.value;
+  }
+	else if (op == '*') {
+    display.value = mul(res);
+    res = display.value;
+  }
+	else {
+    display.value = div(res);
+    res = display.value;
+  }
 }
 
 let sum = (arr) => arr.reduce(function (prev, next){
